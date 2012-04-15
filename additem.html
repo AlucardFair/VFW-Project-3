@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!-- Zachery Hernandez -->
 <!-- VFW 1203 -->
-<!-- Project 2 -->
-<!-- 4/5/2012 -->
+<!-- Project 3 -->
+<!-- 4/19/2012 -->
 <!-- Body Health & Fitness -->
-<!-- https://github.com/AlucardFair/VFW-Project-2 -->
+<!-- https://github.com/AlucardFair/VFW-Project-3 -->
 <!-- Start of HTML Doc -->
 <html>
 	<head>
@@ -41,9 +41,10 @@
 				<legend>Training</legend>
 				<ul>
 					<li>
+						<span class="required"><span>* </span>Required Fields</span>
 						<!-- Start Select & Option -->
 						<!-- New Dynamic Code -->
-						<li id="select"><label for="training">Training Style: </label><br /></li>
+						<li id="select"><label for="training"><span>* </span>Training Style: </label><br /></li>
 						<!-- Old Code -->
 					<!--<label for="method">Training Style:</label><br>
 						<select id="method">
@@ -56,16 +57,17 @@
 						<!-- End Select & Option -->
 					</li>
 					<!-- Text Field -->
-					<li><label for="wname">Workout Name: </label><br /><input type="text" id="wname" placeholder="Running, Weights..." /></li>
+					<li><label for="wname"><span>* </span>Workout Name: </label><br /><input type="text" id="wname" placeholder="Running, Weights..." /></li>
 					<!-- Checkbox -->
-					<li><label for="favorite">Is this a favorite? </label><input type="checkbox" checked value="Is this a favorite?" id="favorite" /></li>
+					<li><label for="favorite"><span>* </span>Is this a favorite? </label><input type="checkbox" checked value="Is this a favorite?" id="favorite" /></li>
 					<!-- Range -->
-					<li><label for="howlong">How long will you do this workout? (5-60 Minutes)</label><br /><input type="range" id="howlong" value="0" min="5" max="60" step="5" /></li>
-					<li>What time would you prefer for this workout?</li>
+					<li><label for="howlong"><span>* </span>How long will you do this workout? (5-60 Minutes)</label><br /><input type="range" id="howlong" value="0" min="5" max="60" step="5" /></li>
+					<li><span>* </span>What time would you prefer for this workout?</li>
 					<!-- Radio -->
 					<li><input type="radio" value="Morning" id="morning" name="timeofday" /><label for="morning">Morning</label></li>
 					<li><input type="radio" value="Afternoon" id="afternoon" name="timeofday" /><label for="afternoon">Afternoon</label></li>
 					<li><input type="radio" value="Evening" id="evening" name="timeofday" /><label for="evening">Evening</label></li>
+					<li><label for="completiondate"><span>* </span>Date to be completed</label><br /><input type="date" value="completiondate" id="completiondate" name="completiondate" /></li>
 				</ul>
 				<!-- End Fieldset -->
 				</fieldset>
@@ -74,7 +76,7 @@
 					<legend>Motivation</legend>
 					<ul>
 						<!-- Text Area -->
-						<li><label for="comments">Start getting yourself motivated.</label><br /><textarea id="comments" placeholder="Motivation starts here."></textarea></li>
+						<li><label for="comments"><span>* </span>Start getting yourself motivated.</label><br /><textarea id="comments" placeholder="Motivation starts here."></textarea></li>
 					</ul>
 			<!-- End Fieldset -->
 			</fieldset>

@@ -1,8 +1,8 @@
 /*
 Zachery Hernandez
 VFW 1203
-Project 2
-4/5/2012
+Project 3
+4/19/2012
 Body Health & Fitness
 https://github.com/AlucardFair/VFW-Project-2
 */
@@ -84,8 +84,9 @@ window.addEventListener("DOMContentLoaded", function() {
 			item.training 		= ["Training Style: ", $('styles').value];
 			item.wname			= ["Workout Name: ", $('wname').value];
 			item.favorite		= ["Favorite: ", favoriteValue];
-			item.howlong		= ["How Long: ", $('howlong').value];
+			item.howlong		= ["How Long: ", $('howlong').value + " minutes"];
 			item.timeofday		= ["Preferred Time: ", timeValue];
+			item.timeofday		= ["Completion Date: ", $('completiondate').value];
 			item.comments		= ["Self-Motivation: ", $('comments').value];
 			
 		// Save Data into Local Storage with JSON.stringify //

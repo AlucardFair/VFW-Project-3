@@ -1,8 +1,8 @@
 /*
 Zachery Hernandez
 VFW 1203
-Project 2
-4/5/2012
+Project 3
+4/19/2012
 Body Health & Fitness
 https://github.com/AlucardFair/VFW-Project-2
 */
@@ -86,6 +86,15 @@ fieldset {
 legend {
 	font-family: Helvetica, Roboto, Droid-Sans;
 	font-weight: strong;
+}
+
+span {
+	color: red;
+}
+
+span.required {
+	color: white;
+	text-shadow: 0 0 5px red;
 }
 
 li {
