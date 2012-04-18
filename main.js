@@ -86,7 +86,7 @@ window.addEventListener("DOMContentLoaded", function() {
 			item.favorite		= ["Favorite: ", favoriteValue];
 			item.howlong		= ["How Long: ", $('howlong').value + " minutes"];
 			item.timeofday		= ["Preferred Time: ", timeValue];
-			item.timeofday		= ["Completion Date: ", $('completiondate').value];
+			item.completiondate	= ["Completion Date: ", $('completiondate').value];
 			item.comments		= ["Self-Motivation: ", $('comments').value];
 			
 		// Save Data into Local Storage with JSON.stringify //
@@ -147,9 +147,12 @@ window.addEventListener("DOMContentLoaded", function() {
 		editButton.style.webkitBoxShadow = "inset 0px 6px 1px rgba(220,220,220,.3)";		
 		editButton.key = key;
 		var editTxt = "Edit Workout";
-		//editButton.addEventListner("click", editItem);
+		editButton.addEventListener("click", editItem);
 		editButton.innerHTML = editTxt;
 		buttonsLi.appendChild(editButton);
+		// Add line break, kept hidden as I prefer them side by side //
+/*		var breakTag = document.createElement('br');
+		buttonsLi.appendChild(breakTag);*/
 		// Add single delete item button //
 		var deleteButton = document.createElement('a');
 		deleteButton.href = "#";
@@ -167,9 +170,44 @@ window.addEventListener("DOMContentLoaded", function() {
 		deleteButton.style.webkitBoxShadow = "inset 0px 6px 1px rgba(220,220,220,.3)";
 		deleteButton.key = key;
 		var deleteTxt = "Delete Workout";
-		//deleteButton.addEventListener("click", deleteItem);
+//		deleteButton.addEventListener("click", deleteItem);
 		deleteButton.innerHTML = deleteTxt;
 		buttonsLi.appendChild(deleteButton);
+	};
+	
+	function editItem() {
+		// Grab data from local storage for item edit //
+		var value = localStorage.getItem(this.key);
+		var item = JSON.parse(value);
+		// Turn form back on //
+		toggle("off");
+		// Populate form fields //
+		$('styles').value = item.training[1];
+		$('wname').value = item.wname[1];
+		if(item.favorite[1] == "Yes") {
+			$('favorite').setAttribute("checked", "checked");
+		}
+		$('howlong').value = item.howlong[1];
+		var radios = document.forms[0].timeofday;
+		for (var i=0, j=radios.length; i<j; i++) {
+			if(radios[i].value == "Morning" && item.timeofday[1] == "Morning") {
+				radios[i].setAttribute("checked", "checked");
+			}else if (radios[i].value == "Afternoon" && item.timeofday[1] == "Afternoon") {
+				radios[i].setAttribute("checked", "checked");
+			}else if (radios[i].value == "Evening" && item.timeofday[1] == "Evening") {
+				radios[i].setAttribute("checked", "checked");
+			}
+		}
+		$('completiondate').value = item.completiondate[1];
+		$('comments').value = item.comments[1];
+		// Remove event listener for 'save' button //
+		submitData.removeEventListener("click", saveData);
+		// Change submit button value from Save Workout to Save Changes //
+		$('saveData').value = "Save Changes";
+		var editSubmit = $('submit');
+		// Save to original key value established for particular values //
+		editSubmit.addEventListener("click", validate);
+		editSubmit.key = key;
 	};
 	
 	function clearData() {
@@ -188,11 +226,65 @@ window.addEventListener("DOMContentLoaded", function() {
 		}
 	};
 	
+	function validate(e) {
+		// Define elements we want to check //
+		var getStyle = $('styles');
+		var getWname = $('wname');
+		var getHowLong = $('howlong');
+		var getTimeOfDay = $('timeofday');
+		var getCompletionDate = $('completiondate');
+		var getComments = $('comments');
+		// Reset error messages //
+/*		errMsg.innerHTML = "";
+		getStyle.style.border = "1px solid black";
+		getWname.style.border = "1px solid black";
+		getComments.style.border = "1px solid black";*/
+		// Get error messages //
+		var messageAry = [];
+		// Style validation //
+		if(getStyle.value === "*Choose A Style*") {
+			var styleError = "Please choose a style.";
+			getStyle.style.border = "1px solid red";
+			messageAry.push(styleError);
+		}
+		// Workout name validation //
+		if(getWname.value === "") {
+			var wNameError = "Please enter a workout name.";
+			getWname.style.border = "1px solid red";
+			messageAry.push(wNameError);
+		}
+		// How long validation //
+		
+		// Time preferred validation //
+		
+		// Date completion validation //
+		
+		//Self-Motivation validation //
+		if(getComments.value === "") {
+			var commentsError = "Please motivate yourself.";
+			getComments.style.border = "1px solid red";
+			messageAry.push(commentsError);
+		}
+		// Display error messages //
+		if(messageAry >= 1) {
+			for (var i=0, j=messageAry.length; i<j; i++) {
+				var txt = document.createElement('li');
+				txt.innerHTML = messageAry[i];
+				errMsg.appendChild(txt);
+			}
+			e.preventDefault();
+			return false;
+		}else{
+			saveData();
+		}
+	};
+	
 	// Variable defaults //
 	var workoutTypes = ["*Choose A Style*", "Cardio", "Strength", "Tone "],
 		favoriteValue = "No",
 		timeValue,
-		confirmClear
+		confirmClear,
+		errMsg = $('errors')
 	;
 	
 	// Set Link & Submit Click Events //
@@ -201,7 +293,7 @@ window.addEventListener("DOMContentLoaded", function() {
 	var clearButton = $('clearData');
 	clearButton.addEventListener("click", clearData);
 	var submitData = $('saveData');
-	submitData.addEventListener("click", saveData);
+	submitData.addEventListener("click", validate);
 	
 	// Call Functions //
 	makeWorkoutStyle();
