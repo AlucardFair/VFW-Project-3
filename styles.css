@@ -97,6 +97,11 @@ span.required {
 	text-shadow: 0 0 5px red;
 }
 
+#errors li {
+	color: white;
+	text-shadow: 0 0 5px red;
+}
+
 li {
 	font-family: helvetica, roboto, droid-sans;
 	font-size: 45%;

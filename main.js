@@ -74,9 +74,13 @@ window.addEventListener("DOMContentLoaded", function() {
 	};
 	
 	// Gather Form Data & Place it in an Object & Object is an Array for Form Label and Value //
-	function saveData() {
+	function saveData(key) {
 		// Set Random Key for Stored Data //
-		var id = Math.floor(Math.random()*10001);
+		if(!key) {
+			var id = Math.floor(Math.random()*10001);
+		}else{
+			id = key;
+		}
 		// Call Functions //
 		getCheckboxValue();
 		getSelectedRadio();
@@ -235,10 +239,10 @@ window.addEventListener("DOMContentLoaded", function() {
 		var getCompletionDate = $('completiondate');
 		var getComments = $('comments');
 		// Reset error messages //
-/*		errMsg.innerHTML = "";
+		errMsg.innerHTML = "";
 		getStyle.style.border = "1px solid black";
 		getWname.style.border = "1px solid black";
-		getComments.style.border = "1px solid black";*/
+		getComments.style.border = "1px solid black";
 		// Get error messages //
 		var messageAry = [];
 		// Style validation //
@@ -266,17 +270,15 @@ window.addEventListener("DOMContentLoaded", function() {
 			messageAry.push(commentsError);
 		}
 		// Display error messages //
-		if(messageAry >= 1) {
-			for (var i=0, j=messageAry.length; i<j; i++) {
+		if(messageAry.length >= 1) {
+			for (var i = 0, j = messageAry.length; i < j; i++) {
 				var txt = document.createElement('li');
 				txt.innerHTML = messageAry[i];
 				errMsg.appendChild(txt);
 			}
-			e.preventDefault();
-			return false;
-		}else{
-			saveData();
 		}
+		e.preventDefault();
+		return false;
 	};
 	
 	// Variable defaults //
