@@ -287,9 +287,12 @@ window.addEventListener("DOMContentLoaded", function() {
 				txt.innerHTML = messageAry[i];
 				errMsg.appendChild(txt);
 			}
+			// If errors found, stop the form from submitting and alert the user //
+			alert("There are required fields empty.");
 			e.preventDefault();
 			return false;
 		}else{
+			// If there are no errors, save the data //
 			saveData(this.key);
 		}
 	};
