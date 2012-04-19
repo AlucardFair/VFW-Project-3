@@ -245,8 +245,6 @@ window.addEventListener("DOMContentLoaded", function() {
 		// Define elements we want to check //
 		var getStyle = $('styles');
 		var getWname = $('wname');
-		var getHowLong = $('howlong');
-		var getTimeOfDay = $('timeofday');
 		var getCompletionDate = $('completiondate');
 		var getComments = $('comments');
 		// Reset error messages //
@@ -268,11 +266,13 @@ window.addEventListener("DOMContentLoaded", function() {
 			getWname.style.border = "1px solid red";
 			messageAry.push(wNameError);
 		}
-		// How long validation //
-		
-		// Time preferred validation //
-		
+
 		// Date completion validation //
+		if(getCompletionDate.value === "") {
+			var completionDateError = "Please enter a completion date.";
+			getCompletionDate.style.border = "1px solid red";
+			messageAry.push(completionDateError);
+		}
 		
 		//Self-Motivation validation //
 		if(getComments.value === "") {
