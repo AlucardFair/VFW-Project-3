@@ -4,7 +4,7 @@ VFW 1203
 Project 3
 4/19/2012
 Body Health & Fitness
-https://github.com/AlucardFair/VFW-Project-2
+https://github.com/AlucardFair/VFW-Project-3
 */
 // Wait until DOM is ready //
 window.addEventListener("DOMContentLoaded", function() {
