@@ -174,7 +174,7 @@ window.addEventListener("DOMContentLoaded", function() {
 		deleteButton.style.webkitBoxShadow = "inset 0px 6px 1px rgba(220,220,220,.3)";
 		deleteButton.key = key;
 		var deleteTxt = "Delete Workout";
-//		deleteButton.addEventListener("click", deleteItem);
+		deleteButton.addEventListener("click", deleteItem);
 		deleteButton.innerHTML = deleteTxt;
 		buttonsLi.appendChild(deleteButton);
 	};
@@ -212,6 +212,17 @@ window.addEventListener("DOMContentLoaded", function() {
 		// Save to original key value established for particular values //
 		editSubmit.addEventListener("click", validate);
 		editSubmit.key = key;
+	};
+	
+	function deleteItem() {
+		var ask = confirm("Delete this workout?");
+		if(ask) {
+			localStorage.removeItem(this.key);
+			window.location.reload();
+			alert("Workout has been deleted.");
+		}else{
+			alert("Workout was not deleted.");
+		}
 	};
 	
 	function clearData() {
