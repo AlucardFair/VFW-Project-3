@@ -43,7 +43,7 @@ window.addEventListener("DOMContentLoaded", function() {
 	// Find Value of selected radio button //
 	function getSelectedRadio() {
 		var radios = document.forms[0].timeofday;
-		for (i=0, j=radios.length; i<j; i++) {
+		for (var i=0, j=radios.length; i<j; i++) {
 			if (radios[i].checked) {
 				timeValue = radios[i].value;
 			}
@@ -271,14 +271,16 @@ window.addEventListener("DOMContentLoaded", function() {
 		}
 		// Display error messages //
 		if(messageAry.length >= 1) {
-			for (var i = 0, j = messageAry.length; i < j; i++) {
+			for (var i=0, j=messageAry.length; i<j; i++) {
 				var txt = document.createElement('li');
 				txt.innerHTML = messageAry[i];
 				errMsg.appendChild(txt);
 			}
+			e.preventDefault();
+			return false;
+		}else{
+			saveData(this.key);
 		}
-		e.preventDefault();
-		return false;
 	};
 	
 	// Variable defaults //
