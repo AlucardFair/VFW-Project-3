@@ -288,7 +288,7 @@ window.addEventListener("DOMContentLoaded", function() {
 				errMsg.appendChild(txt);
 			}
 			// If errors found, stop the form from submitting and alert the user //
-			alert("There are required fields empty.");
+			alert("There are required fields left empty.");
 			e.preventDefault();
 			return false;
 		}else{
