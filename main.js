@@ -252,6 +252,7 @@ window.addEventListener("DOMContentLoaded", function() {
 		getStyle.style.border = "1px solid black";
 		getWname.style.border = "1px solid black";
 		getComments.style.border = "1px solid black";
+		getCompletionDate.style.border = "1px solid black";
 		// Get error messages //
 		var messageAry = [];
 		// Style validation //
